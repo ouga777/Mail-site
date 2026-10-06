@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVEN — STILL STANDING | 일곱을 향한 약속</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0b0b0b;
+            --bg-card: #121212;
+            --bg-elevated: #1a1a1a;
+            --border-color: #282828;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --text-main: #f5f5f7;
+            --text-muted: #888888;
+            --accent-gold: #d4af37;
+            --accent-gold-hover: #e5bf45;
+            --accent-red: #e53935;
+            --accent-red-hover: #c62828;
+            --accent-blue: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+        }
+
+        .editorial-badge {
+            font-family: 'Noto Sans KR', 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Minimalist Editorial Social Section */
+        .social-section-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+            position: relative;
+            text-align: center;
+        }
+
+        .social-notice {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .social-notice span {
+            color: var(--accent-gold);
+        }
+
+        .social-divider {
+            width: 80px;
+            height: 1px;
+            background: var(--accent-gold);
+            opacity: 0.4;
+            margin-bottom: 25px;
+        }
+
+        .social-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-chip {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px 26px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-chip svg {
+            width: 15px;
+            height: 15px;
+            fill: var(--text-muted);
+            transition: fill 0.4s ease;
+        }
+
+        .social-chip:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.08);
+        }
+
+        .social-chip:hover svg {
+            fill: var(--accent-gold);
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 35px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 35px;
+            right: 35px;
+            height: 1px;
+            background: var(--border-gold);
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 22px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: all 0.25s;
+            text-transform: uppercase;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-gold);
+            color: #0b0b0b;
+            border-color: var(--accent-gold);
+        }
+
+        .lang-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .lang-btn.active {
+            background: #ffffff;
+            color: #0b0b0b;
+            border-color: #ffffff;
+        }
+
+        textarea {
+            width: 100%;
+            background-color: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 20px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            resize: vertical;
+            min-height: 260px;
+            font-family: inherit;
+            margin-bottom: 20px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .btn {
+            background-color: var(--accent-red);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: background 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-red-hover);
+        }
+
+        .btn-gold {
+            background-color: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+        }
+        .btn-gold:hover {
+            background-color: var(--accent-gold);
+            color: #0b0b0b;
+        }
+
+        .btn-mass {
+            background: linear-gradient(135deg, var(--accent-gold), #b89728);
+            color: #0b0b0b;
+            border: none;
+            padding: 12px 20px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-mass:hover {
+            background: linear-gradient(135deg, var(--accent-gold-hover), var(--accent-gold));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .database-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .email-category-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin: 20px 0 10px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .email-container {
+            max-height: 420px;
+            overflow-y: auto;
+            padding-right: 5px;
+            margin-bottom: 20px;
+        }
+
+        .email-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .email-container::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+
+        .email-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            padding: 12px 18px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .email-row:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .email-text {
+            font-family: monospace;
+            color: #d1d5db;
+            font-size: 0.85rem;
+        }
+
+        .add-box {
+            display: flex;
+            gap: 12px;
+        }
+
+        .add-box input {
+            flex: 1;
+            background-color: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .add-box input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        /* Thank You Section with Starry Background */
+        .thank-you-card {
+            background: linear-gradient(rgba(11, 11, 11, 0.85), rgba(11, 11, 11, 0.92)), url('1000106302.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--border-gold);
+            text-align: center;
+            padding: 50px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thank-you-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .thank-you-card p {
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.8);
+        }
+
+        .thank-you-card .highlight-forever {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-top: 20px;
+            font-size: 1.05rem;
+            display: block;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+        }
+
+        /* Footer Signature */
+        footer.site-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-signature {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+        }
+
+        /* Toast Notification Improved Styles */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-gold);
+            color: #0b0b0b;
+            padding: 14px 26px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1000;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .counter-badge {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .stats-badge {
+            color: var(--accent-gold);
+            border-color: rgba(212, 175, 55, 0.4);
+            font-family: 'Cinzel', serif;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <span class="editorial-badge">일곱을 향한 약속 &mdash; A promise towards 7</span>
+        <h1>SEVEN — STILL STANDING</h1>
+        <p>Statement Dispatcher & Contact Portal</p>
+    </header>
+
+    <!-- Minimalist Editorial Social Section -->
+    <div class="social-section-wrapper">
+        <div class="social-notice">Contact <span>EN-CONNECT7</span> and stay tuned</div>
+        <div class="social-divider"></div>
+        <div class="social-bar">
+            <a href="https://www.instagram.com/en_connect7_base?stkn=MXhxcHFsdHN1dmg1NQ==" target="_blank" class="social-chip">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Instagram
+            </a>
+            <a href="https://x.com/ENCONNECT7_BASE" target="_blank" class="social-chip">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                X Portal
+            </a>
+        </div>
+    </div>
+
+    <!-- Campaign Statement Section -->
+    <div class="card">
+        <div class="card-title">
+            <span>Campaign Phase & Language</span>
+            <span class="counter-badge" id="activePhaseBadge">Active: Day 1 (English)</span>
+        </div>
+        
+        <div class="controls-row">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchDay('day1', this)">Day 1</button>
+                <button class="tab-btn" onclick="switchDay('day2', this)">Day 2</button>
+                <button class="tab-btn" onclick="switchDay('day3', this)">Day 3</button>
+            </div>
+            <div class="lang-tabs">
+                <button class="lang-btn active" onclick="switchLang('en', this)">English</button>
+                <button class="lang-btn" onclick="switchLang('kr', this)">한국어</button>
+            </div>
+        </div>
+
+        <textarea id="templateText"></textarea>
+        
+        <div>
+            <button class="btn btn-gold" onclick="copyText()">Copy Active Statement</button>
+        </div>
+    </div>
+
+    <!-- Target Contact Database (Categorized) -->
+    <div class="card">
+        <div class="database-header-row">
+            <div class="card-title" style="margin-bottom: 0; border: none;">
+                <span>Target Contact Database</span>
+                <span class="counter-badge" id="emailCount">0 contacts</span>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <span class="counter-badge stats-badge" id="dispatchedCountBadge">Sent: 0</span>
+                <button class="btn-mass" onclick="massDispatch()">⚡ Mass Dispatch All</button>
+            </div>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px; letter-spacing: 0.3px;">
+            Clicking 'Dispatch' will automatically load the recipient address, subject, and the currently selected statement into your Gmail client.
+        </p>
+
+        <div class="email-container" id="emailList"></div>
+
+        <div class="add-box">
+            <input type="email" id="customEmailInput" placeholder="Add custom recipient address...">
+            <button class="btn" onclick="addCustomEmail()">Add Contact</button>
+        </div>
+    </div>
+
+    <!-- Thank You Section with Starry Background -->
+    <div class="card thank-you-card">
+        <h3>THANK YOU, ENGENE</h3>
+        <p>Thank you for all your efforts, support, and for continuing to stand for our seven.</p>
+        <p>Let’s keep going and keep making our voices heard.</p>
+        <span class="highlight-forever">SEVEN — STILL STANDING.</span>
+    </div>
+
+    <!-- Footer Signature -->
+    <footer class="site-footer">
+        <div class="footer-signature">EN-CONNECT7</div>
+    </footer>
+</div>
+
+<div id="toast" class="toast">Action completed successfully</div>
+
+<script>
+    const categorizedEmails = [
+        {
+            category: "HYBE & Belift Executives / Management",
+            emails: [
+                "jasonlee@hybecorp.com", "press@hybecorp.com", "byung@hybecorp.com", 
+                "audition@belift.kr", "hpark@hybecorp.com", "hanpark@hybecorp.com", 
+                "myrna.perez@hybecorp.com", "myrnaperez1210@gmail.com", "jkwon@hybecorp.com", 
+                "aeyoungkwon88@gmail.com", "kv@hybecorp.com", "emily@hybecorp.com",
+                "investorrelations@hybecorp.com", "privacy-noreply@belift.kr"
+            ]
+        },
+        {
+            category: "Netmarble Contacts & Affiliates",
+            emails: [
+                "mediacontact@netmarble.com", "ir@netmarble.com", "richesta@naver.com", 
+                "hophead@gmail.com", "kuny0113@gmail.com", "onminds@gmail.com",
+                "bagsejinseijin@netmarble.com", "wookyung.rhee@netmarble.com", "wrhee@netmarble.com",
+                "gimcanghwan@netmarble.com", "hkim@netmarble.com", "yunho.bae@netmarble.com",
+                "yunhobae@netmarble.com", "ybae@netmarble.com", "bae@netmarble.com", 
+                "yunho@netmarble.com", "mimi@netmarble.com", "mimi.huang@netmarble.com",
+                "pakorn@netmarble.com", "pakorn.kongkaew@netmarble.com", "pakornkongkaew@netmarble.com",
+                "bagsejin.seijin@netmarble.com"
+            ]
+        },
+        {
+            category: "Media Outlets & Press Desks",
+            emails: [
+                "khnews@heraldcorp.com", "editor@heraldcorp.com", "android@chosun.com",
+                "park.hyemin@joongang.co.kr", "kjd@joongang.co.kr", "care@mbc.net",
+                "jisangkim@sbs.co.kr", "soocha@sbs.co.kr", "ssisajebo@sisajournal.com", 
+                "news@edaily.co.kr", "tvnews@chosun.com", "chabodo@donga.com", "jebo@jtbc.co.kr", 
+                "sbs8news@sbs.co.kr", "newscenter@sbs.co.kr", "kbs1234@kbs.co.kr", 
+                "djdreamtime@gmail.com", "gokimtaeho@hanmail.net"
+            ]
+        }
+    ];
+
+    const campaignContent = {
+        day1: {
+            en: `Sir/Madam\n\nWe are writing to you today on behalf of ENGENEs worldwide to formally voice our collective concern regarding the current workload, physical health, safety, and overall well-being of the ENHYPEN members.\n\nENHYPEN have been maintaining demanding schedules, including an ongoing World Tour, multiple comebacks, performances, rehearsals, travel, and other activities. While we understand the demands of their profession, the continued workload raises concerns about whether the members are receiving sufficient time to rest and recover.\n\nThere have also been instances of members being absent from activities or schedules due to health-related circumstances. We fully respect their medical privacy and do not expect private medical information to be disclosed. However, these situations naturally raise concerns about whether their health is being adequately prioritized.\n\nWe are also concerned about the members’ safety and privacy. As artists, they deserve effective protection from excessive intrusion and situations that may compromise their personal safety or privacy.\n\nWe sincerely ask BELIFT LAB to carefully review the members schedules and ensure that adequate rest and recovery are provided between major activities. Their health should never be treated as secondary to schedules, promotions, or performances.\n\nWe are not asking for ENHYPEN to stop working. We are simply asking that their health, safety, and overall well-being be placed at the center of decisions concerning their careers.\n\nWe care deeply about ENHYPEN and want to see them remain healthy, safe, and able to continue their careers for many years to come.\n\nThank you for taking the time to consider these concerns.\n\nSincerely,\nENGENEs`,
+            kr: `담당자님께,\n\n전 세계 ENGENE를 대표하여, 현재 ENHYPEN 멤버들의 업무량, 신체적 건강, 안전 및 전반적인 복지에 대해 팬들이 공통적으로 가지고 있는 우려를 공식적으로 전달드리고자 합니다.\n\nENHYPEN은 현재 월드 투어를 비롯하여 여러 차례의 컴백, 공연, 리허설, 이동 및 기타 다양한 일정을 소화하며 매우 바쁜 활동을 이어가고 있습니다. 저희는 아티스트라는 직업의 특성상 이러한 일정이 요구될 수 있다는 점을 이해하고 있습니다. 그러나 이러한 높은 업무량이 지속됨에 따라 멤버들에게 충분한 휴식과 회복의 시간이 보장되고 있는지에 대해 우려하지 않을 수 없습니다.\n\n또한 건강상의 사유로 일부 멤버가 활동이나 일정에 불참한 사례도 있었습니다. 저희는 멤버들의 의료 정보와 사생활을 전적으로 존중하며, 개인적인 의료 정보가 공개되기를 요구하는 것이 아닙니다. 다만 이러한 상황은 멤버들의 건강이 충분히 우선시되고 있는지에 대한 자연스러운 우려를 불러일으킵니다.\n\n멤버들의 안전과 사생활에 대해서도 우려하고 있습니다. 아티스트로서 멤버들은 과도한 사생활 침해와 개인의 안전 또는 사생활을 위협할 수 있는 상황으로부터 효과적으로 보호받을 권리가 있습니다.\n\n이에 BELIFT LAB에서 멤버들의 일정을 면밀히 검토하고, 주요 활동 사이에 충분한 휴식과 회복의 시간이 보장될 수 있도록 조치해 주시기를 진심으로 요청드립니다. 멤버들의 건강이 일정, 프로모션 또는 공연보다 부차적인 것으로 취급되어서는 안 됩니다.\n\n저희는 ENHYPEN의 활동 중단을 요구하는 것이 아닙니다. 단지 멤버들의 건강, 안전, 그리고 전반적인 행복과 복지가 그들의 활동과 커리어에 관한 의사결정의 중심에 놓이기를 요청드리는 것입니다.\n\n저희는 ENHYPEN을 진심으로 아끼며, 멤버들이 건강하고 안전한 상태로 오랫동안 자신의 커리어를 이어갈 수 있기를 바랍니다.\n\n이러한 우려를 검토해 주셔서 감사합니다.\n\n진심을 담아,\nENGENEs`,
+        },
+        day2: {
+            en: `Sir/Madam,\n\nSeven months have passed since the announcement regarding Heeseung’s departure from ENHYPEN, yet the concerns and hopes of many ENGENEs remain unresolved.\n\nWe respectfully ask that the following points be reconsidered:\n\n• The full process and circumstances surrounding the departure were not publicly explained in detail, leaving many questions unanswered.\n\n• Heeseung’s individual artistic path should not necessarily require the permanent end of his participation in ENHYPEN. We urge the company to consider whether a future can exist where his individual activities and his place in the group can coexist.\n\n• Seven months have passed, and we believe continued acknowledgement alone is no longer sufficient. We respectfully ask for meaningful consideration and concrete action regarding the concerns raised by fans.\n\nOur position remains clear and consistent:\n\nWe support Heeseung’s individual future. We support ENHYPEN. And we continue to hope for ENHYPEN to reunite as seven.\n\nWe respectfully request that this continued concern from ENGENEs be heard, seriously considered, and communicated to the relevant decision-makers.\n\nSeven months have passed. Our demand has not changed: ENHYPEN as seven.\n\nSincerely,\nENGENEs`,
+            kr: `담당자님께,\n\nENHYPEN의 멤버였던 희승의 팀 탈퇴가 발표된 지 7개월이 지났지만, 여전히 많은 ENGENE들의 우려와 바람은 해결되지 않은 채 남아 있습니다.\n\n이에 다음과 같은 사항들을 다시 한번 신중하게 검토해 주시기를 정중히 요청드립니다.\n\n• 탈퇴 결정의 전체적인 과정과 구체적인 배경 및 상황이 충분히 공개적으로 설명되지 않아 많은 의문이 해소되지 않은 상태입니다.\n\n• 희승의 개인적인 예술 활동과 진로가 반드시 ENHYPEN 활동의 영구적인 종료를 의미해야 하는 것은 아닙니다. 개인 활동과 그룹 활동을 함께 이어갈 수 있는 미래가 가능한지 회사 차원에서 다시 한번 검토해 주시기를 요청드립니다.\n\n• 7개월이라는 시간이 지났으며, 단순한 우려 표명이나 입장 확인만으로는 더 이상 충분하지 않다고 생각합니다. 팬들이 지속적으로 제기해 온 우려에 대해 실질적인 검토와 구체적인 조치를 취해 주시기를 정중히 요청드립니다.\n\n저희의 입장은 명확하고 변함이 없습니다.\n\n저희는 희승의 개인적인 미래를 지지합니다.\n저희는 ENHYPEN을 지지합니다.\n그리고 ENHYPEN이 7명으로 다시 함께할 수 있기를 계속해서 바랍니다.\n\nENGENE들의 이러한 지속적인 우려가 전달되고, 진지하게 검토되며, 관련 의사결정권자들에게 충분히 전달되기를 정중히 요청드립니다.\n\n7개월이 지났습니다. 저희의 요구는 변하지 않았습니다.\n\nENHYPEN은 7명이어야 합니다.\n\n진심을 담아,\nENGENEs`,
+        },
+        day3: {
+            en: `Sir/Madam\n\nIn light of the concerns and developments that have emerged over the past several months, we, ENGENEs, respectfully urge the company to give serious consideration to the following concerns and take meaningful, necessary action to address them without further delay:\n\n• To take direct, institutional responsibility to address these concerns immediately, rather than deferring accountability or placing the burden of explanation on the group members.\n\n• To implement stringent, verifiable protocols to ensure the absolute safety, privacy, and personal protection of all group members.\n\n• To introduce structured and adequately guaranteed rest periods to safeguard the members against further physical and mental exhaustion, securing their long-term health and well-being.\n\n• To immediately scale down and optimize the group's active schedule. Managing three consecutive comebacks without adequate recovery time has severely compromised the members' physical well-being.\n\n• To release a detailed, comprehensive disclosure explaining the internal management decisions and administrative actions taken over the past seven months.\n\n• To immediately reverse the decision regarding Heeseung's departure from ENHYPEN, allowing him to pursue his individual projects while firmly maintaining his status as an active member of the seven-member group.\n\nWe expect a swift, transparent public statement and actionable timeline addressing these core demands. Continued silence will only result in an escalation of our collective campaign.\n\nSincerely,\nENGENEs`,
+            kr: `담당자님께,\n\n지난 몇 달 동안 제기되어 온 우려와 여러 상황을 고려하여, 저희 ENGENE들은 다음과 같은 문제들을 회사에서 진지하게 검토하고 더 이상의 지연 없이 의미 있고 필요한 조치를 취해 주시기를 정중히 요청드립니다.\n\n• 책임을 그룹 멤버들에게 전가하거나 설명의 부담을 멤버들에게 맡기는 대신, 회사 차원에서 직접적이고 제도적인 책임을 가지고 이러한 문제들을 즉시 해결해 주시기 바랍니다.\n\n• 모든 멤버들의 안전, 사생활 및 개인적인 보호를 확실하게 보장할 수 있도록 엄격하고 검증 가능한 보호 및 보안 절차를 마련해 주시기 바랍니다.\n\n• 멤버들이 추가적인 신체적·정신적 피로를 겪지 않도록 체계적이고 충분히 보장된 휴식 기간을 마련하여 장기적인 건강과 복지를 보호해 주시기 바랍니다.\n\n• 그룹의 현재 활동 일정을 즉시 축소하고 효율적으로 조정해 주시기 바랍니다. 충분한 회복 기간 없이 3회 연속 컴백을 진행하는 것은 멤버들의 신체적 건강에 심각한 부담을 초래했습니다.\n\n• 지난 7개월 동안 이루어진 내부적인 경영 결정 및 행정적 조치에 대해 구체적이고 종합적인 설명을 공개해 주시기 바랍니다.\n\n• 희승의 ENHYPEN 탈퇴 결정을 즉시 철회하고, 희승이 개인적인 활동과 프로젝트를 이어가는 동시에 7인조 그룹의 현역 멤버로서의 지위를 확고히 유지할 수 있도록 해 주시기 바랍니다.\n\n저희는 이러한 핵심 요구 사항에 대해 신속하고 투명한 공식 입장과 구체적인 실행 일정을 제시해 주시기를 기대합니다. 계속되는 침묵은 저희의 공동 캠페인을 더욱 확대하게 만들 수밖에 없습니다.\n\n진심을 담아,\nENGENEs`,
+        }
+    };
+
+    let activeDay = 'day1';
+    let activeLang = 'en';
+    let dispatchedCount = parseInt(localStorage.getItem('en_dispatched_count') || '0');
+
+    function switchDay(dayKey, btnElement) {
+        activeDay = dayKey;
+        document.querySelectorAll('.tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+        updateTextarea();
+        updateBadge();
+    }
+
+    function switchLang(langKey, btnElement) {
+        activeLang = langKey;
+        document.querySelectorAll('.lang-tabs .lang-btn').forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+        updateTextarea();
+        updateBadge();
+    }
+
+    function updateTextarea() {
+        document.getElementById('templateText').value = campaignContent[activeDay][activeLang];
+    }
+
+    function updateBadge() {
+        const dayStr = activeDay.toUpperCase().replace('DAY', 'Day ');
+        const langStr = activeLang === 'en' ? 'English' : '한국어';
+        document.getElementById('activePhaseBadge').innerText = `Active: ${dayStr} (${langStr})`;
+        document.getElementById('dispatchedCountBadge').innerText = `Sent: ${dispatchedCount}`;
+    }
+
+    function getTotalEmailCount() {
+        return categorizedEmails.reduce((total, group) => total + group.emails.length, 0);
+    }
+
+    function getActiveSubject() {
+        let subjectText = "Inquiry Regarding Management Matters";
+        if (activeLang === 'en') {
+            if (activeDay === 'day1') {
+                subjectText = "Inquiry Regarding Member Well-being, Workload, and Safety Protocols";
+            } else if (activeDay === 'day2') {
+                subjectText = "Regarding ENHYPEN's Lineup and Group Direction";
+            } else if (activeDay === 'day3') {
+                subjectText = "Formal Appeal for Institutional Transparency and Management Accountability";
+            }
+        } else {
+            if (activeDay === 'day1') {
+                subjectText = "ENHYPEN 멤버들의 건강, 업무량 및 안전 프로토콜에 관한 문의 건";
+            } else if (activeDay === 'day2') {
+                subjectText = "ENHYPEN의 멤버 구성 및 그룹 방향성에 관한 요청 건";
+            } else if (activeDay === 'day3') {
+                subjectText = "기관 투명성 및 경영 책임성에 대한 공식 요청 건";
+            }
+        }
+        return subjectText;
+    }
+
+    function incrementDispatchCount(amount = 1) {
+        dispatchedCount += amount;
+        localStorage.setItem('en_dispatched_count', dispatchedCount);
+        updateBadge();
+    }
+
+    function renderEmails() {
+        const container = document.getElementById('emailList');
+        container.innerHTML = '';
+        
+        document.getElementById('emailCount').innerText = `${getTotalEmailCount()} contacts`;
+
+        categorizedEmails.forEach((group) => {
+            const catTitle = document.createElement('div');
+            catTitle.className = 'email-category-title';
+            catTitle.innerText = group.category;
+            container.appendChild(catTitle);
+
+            group.emails.forEach((email) => {
+                const row = document.createElement('div');
+                row.className = 'email-row';
+
+                const span = document.createElement('span');
+                span.className = 'email-text';
+                span.innerText = email;
+
+                const sendBtn = document.createElement('a');
+                sendBtn.className = 'btn';
+                sendBtn.innerHTML = 'Dispatch ➔';
+                sendBtn.target = '_blank';
+                sendBtn.onclick = (e) => {
+                    e.preventDefault();
+                    const currentText = document.getElementById('templateText').value;
+                    const subject = encodeURIComponent(getActiveSubject());
+                    const body = encodeURIComponent(currentText);
+                    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+                    window.open(url, '_blank');
+                    
+                    incrementDispatchCount(1);
+                    showToast('Email draft opened & recorded');
+                };
+
+                row.appendChild(span);
+                row.appendChild(sendBtn);
+                container.appendChild(row);
+            });
+        });
+    }
+
+    function massDispatch() {
+        let allEmails = [];
+        categorizedEmails.forEach(group => {
+            allEmails = allEmails.concat(group.emails);
+        });
+
+        if(allEmails.length === 0) {
+            alert('No emails found.');
+            return;
+        }
+
+        const currentText = document.getElementById('templateText').value;
+        const subject = encodeURIComponent(getActiveSubject());
+        const body = encodeURIComponent(currentText);
+        
+        const bccList = allEmails.join(',');
+        const url = `https://mail.google.com/mail/?view=cm&fs=1&bcc=${bccList}&su=${subject}&body=${body}`;
+        
+        window.open(url, '_blank');
+        
+        incrementDispatchCount(allEmails.length);
+        showToast(`Mass dispatch opened for all ${allEmails.length} contacts!`);
+    }
+
+    function addCustomEmail() {
+        const input = document.getElementById('customEmailInput');
+        const val = input.value.trim();
+        if(val && val.includes('@')) {
+            categorizedEmails[0].emails.push(val);
+            input.value = '';
+            renderEmails();
+            showToast('Contact added successfully');
+        } else {
+            alert('Please enter a valid email address.');
+        }
+    }
+
+    function copyText() {
+        const text = document.getElementById('templateText').value;
+        navigator.clipboard.writeText(text);
+        showToast('Active statement copied');
+    }
+
+    let toastTimer;
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.innerText = msg;
+        toast.classList.add('show');
+        
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2500);
+    }
+
+    window.onload = () => {
+        updateTextarea();
+        updateBadge();
+        renderEmails();
+    };
+</script>
+
+</body>
+</html>
